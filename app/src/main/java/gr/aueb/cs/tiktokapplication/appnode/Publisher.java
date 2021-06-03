@@ -12,11 +12,8 @@ import java.math.BigInteger;
 import java.net.Socket;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.parser.mp4.MP4Parser;
-import org.apache.tika.sax.BodyContentHandler;
 import gr.aueb.cs.tiktokapplication.broker.Broker;
 import gr.aueb.cs.tiktokapplication.video.ChannelName;
 import gr.aueb.cs.tiktokapplication.video.Value;
@@ -225,9 +222,10 @@ public class Publisher extends Thread implements Node, PublisherInterface {
 			
 			// Getting current working directory
 			String userDirectory = System.getProperty("user.dir");
-			
+
+			assert userDirectory != null;
 			File directory= new File(userDirectory);
-			for (File file : directory.listFiles()) {
+			for (File file : Objects.requireNonNull(directory.listFiles())) {
 				
 				if (file.getName().endsWith(".txt")) {
 					
@@ -508,7 +506,8 @@ public class Publisher extends Thread implements Node, PublisherInterface {
         }
 		
 	}
-	
+
+	/*
 	public ArrayList<Value> generateChunks(String video) {
 	
 		ArrayList<Value> chunks = new ArrayList<Value>();
@@ -625,7 +624,12 @@ public class Publisher extends Thread implements Node, PublisherInterface {
 		
 		return chunks;
 	}
-	
+	*/
+
+	public ArrayList<Value> generateChunks(String video) {
+		return null;
+	}
+
 	public void run() {
 				
 		if (this.getOption().getOption()==1) {
