@@ -9,13 +9,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+import gr.aueb.cs.tiktokapplication.appnode.Consumer;
+import gr.aueb.cs.tiktokapplication.appnode.Publisher;
+import gr.aueb.cs.tiktokapplication.dao.ConsumerDAO;
+import gr.aueb.cs.tiktokapplication.dao.PublisherDAO;
 import gr.aueb.cs.tiktokapplication.ui.addhashtag.add_hashtag;
+import gr.aueb.cs.tiktokapplication.video.ChannelName;
 
 public class Configurations extends AppCompatActivity {
 
@@ -57,6 +60,25 @@ public class Configurations extends AppCompatActivity {
 
                 int portPub =  Integer.parseInt(port.getText().toString().trim());
                 int portSub = portPub + 1;
+
+
+                // Initialize a new Publisher object
+                Publisher publisher = new Publisher();
+                ArrayList<String> hashtags = new ArrayList<String>();
+                ChannelName channel = new ChannelName(channelName, hashtags);
+                publisher.init(1, ipPub, portPub, channel);
+
+                // Add Publisher on existing database
+                PublisherDAO dao = new PublisherDAO(publisher);
+
+                // Initialize a new Consumer object
+                Consumer consumer = new Consumer();
+                consumer.init(2, ipSub, portSub);
+
+                // Add Consumer on existing database
+                ConsumerDAO daoConsumer = new ConsumerDAO(consumer);
+
+
 
                 ArrayList<String> info = new ArrayList<>();
 
