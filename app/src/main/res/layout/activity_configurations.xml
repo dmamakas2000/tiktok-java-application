@@ -101,8 +101,8 @@
 
     <Button
         android:id="@+id/done"
-        android:layout_width="299dp"
-        android:layout_height="49dp"
+        android:layout_width="378dp"
+        android:layout_height="50dp"
         android:text="Done"
         app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
