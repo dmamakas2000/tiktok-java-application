@@ -78,7 +78,8 @@ public class Configurations extends AppCompatActivity {
                 // Add Consumer on existing database
                 ConsumerDAO daoConsumer = new ConsumerDAO(consumer);
 
-
+                publisher.retrieveInformation();
+                consumer.retrieveInformation();
 
                 ArrayList<String> info = new ArrayList<>();
 
